@@ -1,16 +1,33 @@
 package com.jshen.bike.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.math.BigDecimal;
 import java.sql.Date;
 
+@Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Bike {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
     private String name;
     private String email;
     private String phone;
     private String model;
     private String serialNumber;
     private BigDecimal purchasePrice; //make decimal number as non-floating
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy")
     private Date purchaseDate;
+
     private boolean contact;
 
     public String getName() {
@@ -75,5 +92,13 @@ public class Bike {
 
     public void setContact(boolean contact) {
         this.contact = contact;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
