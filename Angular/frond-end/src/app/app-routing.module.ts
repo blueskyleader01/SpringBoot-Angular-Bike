@@ -11,7 +11,7 @@ const routes: Routes = [
   },
   {
     path: 'admin/view/:id',
-    component: AdminComponent
+    component: ViewRegistrationComponent
   },
   {
     path: 'admin',
