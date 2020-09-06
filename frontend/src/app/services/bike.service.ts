@@ -14,12 +14,18 @@ export class BikeService {
   constructor(private http:HttpClient) { }
 
   getBikes() {
-    return this.http.get('/server/api/v1/bikes');
+    let token = localStorage.getItem('access_token')
+    return this.http.get('/server/api/v1/bikes',
+    {headers: new HttpHeaders().set('Authorization', 'Bearer ' + token )}
+    );
   } //we created proxy.conf.json that redirect my url, so /server/api/v1/bikes will be following http://localhost:4200
   //and the new url is http://localhost:4200/server/api/v1/bikes
 
   getBike(id: number){
-    return this.http.get(`/server/api/v1/bikes/${id}`);
+    let token = localStorage.getItem('access_token')
+    return this.http.get(`/server/api/v1/bikes/${id}`,
+    {headers: new HttpHeaders().set('Authorization', 'Bearer ' + token )}
+    );
   }
 
   createBikeRegistration(bike){
