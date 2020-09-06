@@ -1,3 +1,4 @@
 /frontend/node_modules
 /frontend/proxy.conf.json
+/frontend/server.js
 /backend/src/main/resources/application.properties
