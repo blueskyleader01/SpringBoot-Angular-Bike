@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BikeService } from 'src/app/services/bike.service';
 import { ActivatedRoute } from '@angular/router'; 
+import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-view-registration',
   templateUrl: './view-registration.component.html',
@@ -9,7 +10,9 @@ import { ActivatedRoute } from '@angular/router';
 export class ViewRegistrationComponent implements OnInit {
   public bikeReg; 
 
-  constructor(private bikeService: BikeService, private route: ActivatedRoute) { }
+  constructor(private bikeService: BikeService, 
+              private route: ActivatedRoute,
+              private authService: AuthService) { }
 
   ngOnInit(): void {
     this.getBikeReg(this.route.snapshot.params.id); 
@@ -23,6 +26,10 @@ export class ViewRegistrationComponent implements OnInit {
       err => console.log(err),
       () => console.log('bike loaded')
     )
+  }
+
+  handleLogOut(){
+    this.authService.logout(); 
   }
 
 }

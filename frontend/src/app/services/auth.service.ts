@@ -28,7 +28,7 @@ export class AuthService {
         this.setSession(authResult);
         this.router.navigate(['/admin']);
       } else if (err) {
-        this.router.navigate(['/admin']);
+        this.router.navigate(['/']);
         console.log(err);
       }
     });
@@ -44,10 +44,13 @@ export class AuthService {
 
   public logout(): void {
     // Remove tokens and expiry time from localStorage
+    // console.log(localStorage);
+    
     localStorage.removeItem('access_token');
     localStorage.removeItem('id_token');
     localStorage.removeItem('expires_at');
     // Go back to the home route
+    // console.log(localStorage);
     this.router.navigate(['/']);
   }
 
